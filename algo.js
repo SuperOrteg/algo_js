@@ -30,14 +30,21 @@ const secondExercise = (array) => {
 	return count;
 };
 
-console.log(secondExercise(listSecond3));
-console.log(secondExercise(listSecond4));
+// Tester avec le booléen à la place du counter
+
+// console.log(secondExercise(listSecond3));
+// console.log(secondExercise(listSecond4));
 
 const thirdExercise = (array, k) => {
-	for (i = 0; i < array.length; i++) {
-		const diffIndex = array.indexOf(k - array[i]);
-		if (diffIndex >= 0 && diffIndex !== i) {
+	let arr = [];
+	while (array.length != 0) {
+		for (i = 0; i < array.length; i++) {
+			arr.push(array[0] + array[i + 1]);
+		};
+		if (arr.includes(k)) {
 			return true;
+		} else {
+			array.splice(0, 1);
 		}
 	}
 	return false;
@@ -45,6 +52,26 @@ const thirdExercise = (array, k) => {
 
 // console.log(thirdExercise(listFirst1, 17));
 // console.log(thirdExercise(listFirst2, 19));
+
+const fourthExercise = (array) => {
+	let arr = [];
+	let count = 0;
+	while (array.length != 0) {
+		for (i = 0; i < array.length; i++) {
+			count = 0;
+			if (array[0] < array[i]) {
+				array.splice(0, 1);
+				break;
+			}
+			count++;
+		}
+		if (count > 0) arr.push(array[0]) && array.splice(0, 1);
+	}
+	return arr.length;
+};
+
+// console.log(fourthExercise(listSecond3));
+// console.log(fourthExercise(listSecond4));
 
 const fifthExercise = (array, k) => {
 	let arrayTemp = [];
@@ -63,22 +90,15 @@ const fifthExercise = (array, k) => {
 // console.log(fifthExercise(listFirst2, 19));
 
 const sixthExercise = (array) => {
-	let arr = [];
-	while (array.length != 0) {
-		let count = 0;
-		for (i = 1; j < array.length; j++) {
-			if (array[0] < array[i]) {
-				array.splice(0, 1);
-			};
-		};
-		console.log(arr);
-		console.log(array);
-		arr.push(array[0]);
-		array.splice(0, 1);
-		console.log(arr);
-		console.log(array);
-	};
-	return arr;
+	let result = 0;
+	for (i = 0; i < array.length; i++) {
+		arrayNew = array.slice(i + 1);
+		if (Math.max(...arrayNew) < array[i]) {
+			result += 1;
+		}
+	}
+	return result;
 };
 
-console.log(sixthExercise(listSecond3));
+// console.log(sixthExercise(listSecond3));
+// console.log(sixthExercise(listSecond4));
